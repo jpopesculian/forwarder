@@ -1,0 +1,20 @@
+version: "3"
+services:
+  web:
+    image: jpopesculian/forwarder:v0
+    env_file:
+      - docker.env
+    deploy:
+      replicas: 2
+      # resources:
+      #   limits:
+      #     cpus: "0.50"
+      #     memory: 50M
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "80:9292"
+    networks:
+      - webnet
+networks:
+  webnet:

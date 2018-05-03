@@ -13,3 +13,5 @@
 .DS_Store
 *.sqlite3
 .envrc
+docker.env
+swarm-connect.sh
