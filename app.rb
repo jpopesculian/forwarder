@@ -4,7 +4,6 @@ require 'sinatra/reloader'
 require 'sinatra/json'
 require 'sinatra/activerecord'
 require 'sinatra/config_file'
-require 'sinatra/logger'
 require 'rack/contrib'
 
 require_relative 'models/speaker'
@@ -21,7 +20,6 @@ class App < Sinatra::Base
   set :database_file, 'config/database.yml'
   config_file 'config/twilio.yml'
   use Rack::PostBodyContentTypeParser
-  # logger filename: "log/#{settings.environment}.log", level: :trace
 
   get '/' do
     'Hello World!'

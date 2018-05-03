@@ -40,8 +40,6 @@ GEM
     rack-protection (2.0.1)
       rack
     rake (12.3.0)
-    semantic_logger (4.2.2)
-      concurrent-ruby (~> 1.0)
     sinatra (2.0.1)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -57,9 +55,6 @@ GEM
       rack-protection (= 2.0.1)
       sinatra (= 2.0.1)
       tilt (>= 1.3, < 3)
-    sinatra-logger (0.3.2)
-      semantic_logger
-      sinatra
     sqlite3 (1.3.13)
     thread_safe (0.3.6)
     tilt (2.0.8)
@@ -77,12 +72,12 @@ DEPENDENCIES
   graphql
   pry
   puma
+  rack
   rack-contrib
   rake
   sinatra
   sinatra-activerecord
   sinatra-contrib
-  sinatra-logger
   sqlite3
   twilio-ruby
 
