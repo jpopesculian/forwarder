@@ -10,6 +10,7 @@ require 'rack/contrib'
 require_relative 'models/speaker'
 require_relative 'graphql/schema'
 require_relative 'services/sms/inbound_service.rb'
+require_relative 'services/voice/inbound_service.rb'
 
 class App < Sinatra::Base
   register Sinatra::ConfigFile
@@ -20,7 +21,7 @@ class App < Sinatra::Base
   set :database_file, 'config/database.yml'
   config_file 'config/twilio.yml'
   use Rack::PostBodyContentTypeParser
-  logger filename: "log/#{settings.environment}.log", level: :trace
+  # logger filename: "log/#{settings.environment}.log", level: :trace
 
   get '/' do
     'Hello World!'
@@ -32,7 +33,7 @@ class App < Sinatra::Base
   end
 
   post '/voice/inbound' do
-    binding.pry
+    Services::Voice::InboundService.build.()
   end
 
   post '/graphql' do
