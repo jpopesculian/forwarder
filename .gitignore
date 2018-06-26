@@ -1,4 +1,7 @@
 *.gem
+gems
+.bundle/
+/test/package/installed
 *.rbc
 /.config
 /coverage/
@@ -15,3 +18,5 @@
 .envrc
 docker.env
 swarm-connect.sh
+settings/message_store_postgres.json
+settings/twilio_client.json

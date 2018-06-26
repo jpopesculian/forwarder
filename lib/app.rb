@@ -6,10 +6,10 @@ require 'sinatra/activerecord'
 require 'sinatra/config_file'
 require 'rack/contrib'
 
-require_relative 'models/speaker'
-require_relative 'graphql/schema'
-require_relative 'services/sms/inbound_service.rb'
-require_relative 'services/voice/inbound_service.rb'
+require_relative 'app/models/speaker'
+require_relative 'app/graphql/schema'
+require_relative 'app/services/sms/inbound_service.rb'
+require_relative 'app/services/voice/inbound_service.rb'
 
 class App < Sinatra::Base
   register Sinatra::ConfigFile

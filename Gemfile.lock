@@ -1,25 +1,176 @@
+PATH
+  remote: ../forwarder-host
+  specs:
+    forwarder_host (0.0.0)
+      evt-component_host
+      sms_component
+      twilio_lib_component
+
+PATH
+  remote: ../sms-component
+  specs:
+    sms_client (0.0.0)
+      evt-configure
+      evt-messaging-postgres
+    sms_component (0.0.0)
+      eventide-postgres
+      evt-try
+      ruby-boolean
+      twilio_lib_client
+
+PATH
+  remote: ../twilio-lib-component
+  specs:
+    twilio_lib_client (0.0.0)
+      evt-configure
+      evt-messaging-postgres
+    twilio_lib_component (0.0.0)
+      eventide-postgres
+      evt-try
+      ruby-boolean
+      twilio-ruby
+
+PATH
+  remote: .
+  specs:
+    forwarder_app (0.0.0)
+      forwarder_host
+      graphql
+      puma
+      rack
+      rack-contrib
+      rake
+      sinatra
+      sinatra-activerecord
+      sinatra-contrib
+      sms_client
+      twilio-ruby
+
 GEM
   remote: https://rubygems.org/
   specs:
-    activemodel (5.1.5)
-      activesupport (= 5.1.5)
-    activerecord (5.1.5)
-      activemodel (= 5.1.5)
-      activesupport (= 5.1.5)
-      arel (~> 8.0)
-    activesupport (5.1.5)
+    activemodel (5.2.0)
+      activesupport (= 5.2.0)
+    activerecord (5.2.0)
+      activemodel (= 5.2.0)
+      activesupport (= 5.2.0)
+      arel (>= 9.0)
+    activesupport (5.2.0)
       concurrent-ruby (~> 1.0, >= 1.0.2)
-      i18n (~> 0.7)
+      i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    arel (8.0.0)
-    backports (3.11.1)
+    arel (9.0.0)
+    backports (3.11.3)
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
-    faraday (0.15.0)
+    confstruct (1.0.2)
+      hashie (~> 3.3)
+    eventide-postgres (0.2.0.2)
+      evt-consumer-postgres
+      evt-entity_snapshot-postgres
+      evt-entity_store
+    evt-async_invocation (0.1.0.4)
+    evt-attribute (0.2.0.0)
+    evt-casing (0.3.0.3)
+    evt-clock (0.4.0.7)
+      naught
+      tzinfo
+    evt-component_host (0.2.0.1)
+      evt-async_invocation
+      evt-casing
+      evt-log
+      evt-virtual
+      ntl-actor
+    evt-configure (0.1.2.5)
+    evt-consumer (0.7.0.1)
+      evt-configure
+      evt-cycle
+      evt-messaging
+      ntl-actor
+    evt-consumer-postgres (0.2.2.0)
+      evt-consumer
+      evt-messaging-postgres
+    evt-cycle (0.3.0.3)
+      evt-clock
+      evt-initializer
+      evt-log
+      evt-telemetry
+    evt-dependency (0.1.1.0)
+      evt-subst_attr
+    evt-entity_cache (0.16.0.0)
+      evt-configure
+      evt-message_store
+      evt-settings
+      evt-telemetry
+    evt-entity_projection (0.3.0.3)
+      evt-messaging
+    evt-entity_snapshot-postgres (0.2.2.0)
+      evt-entity_store
+      evt-messaging-postgres
+    evt-entity_store (0.5.0.0)
+      evt-entity_cache
+      evt-entity_projection
+    evt-identifier-uuid (0.2.0.0)
+      naught
+    evt-initializer (0.2.0.0)
+      evt-attribute
+    evt-log (0.5.0.0)
+      evt-clock
+      evt-dependency
+      evt-initializer
+      evt-telemetry
+      terminal_colors
+    evt-message_store (0.5.0.1)
+      evt-async_invocation
+      evt-casing
+      evt-identifier-uuid
+      evt-initializer
+      evt-schema
+      evt-transform
+      evt-virtual
+    evt-message_store-postgres (0.10.0.0)
+      evt-log
+      evt-message_store
+      evt-message_store-postgres-database
+      evt-settings
+      pg
+    evt-message_store-postgres-database (0.3.0.0)
+    evt-messaging (0.25.1.0)
+      evt-message_store
+    evt-messaging-postgres (0.7.0.3)
+      evt-message_store-postgres
+      evt-messaging
+    evt-reflect (0.2.0.0)
+    evt-schema (0.7.1.1)
+      evt-attribute
+      evt-set_attributes
+      evt-validate
+      evt-virtual
+    evt-set_attributes (0.3.0.2)
+    evt-settings (0.2.2.0)
+      confstruct
+      evt-casing
+      evt-log
+    evt-subst_attr (0.2.0.1)
+      evt-attribute
+      evt-reflect
+      naught
+    evt-telemetry (0.3.2.1)
+      evt-clock
+      evt-dependency
+    evt-transform (0.2.1.0)
+      evt-log
+      evt-reflect
+    evt-try (0.2.1.3)
+    evt-validate (0.4.0.1)
+      evt-reflect
+    evt-virtual (0.1.1.1)
+    faraday (0.15.2)
       multipart-post (>= 1.2, < 3)
-    graphql (1.7.12)
-    i18n (0.9.5)
+    graphql (1.8.4)
+    hashie (3.5.7)
+    i18n (1.0.1)
       concurrent-ruby (~> 1.0)
     jwt (2.1.0)
     method_source (0.9.0)
@@ -28,37 +179,43 @@ GEM
     multi_json (1.13.1)
     multipart-post (2.0.0)
     mustermann (1.0.2)
-    nokogiri (1.8.2)
+    naught (1.1.0)
+    nokogiri (1.8.3)
       mini_portile2 (~> 2.3.0)
+    ntl-actor (1.2.6)
+    pg (1.0.0)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
-    puma (3.11.2)
-    rack (2.0.4)
+    puma (3.11.4)
+    rack (2.0.5)
     rack-contrib (2.0.1)
       rack (~> 2.0)
-    rack-protection (2.0.1)
+    rack-protection (2.0.3)
       rack
-    rake (12.3.0)
-    sinatra (2.0.1)
+    rake (12.3.1)
+    ruby-boolean (1.3.4)
+    sinatra (2.0.3)
       mustermann (~> 1.0)
       rack (~> 2.0)
-      rack-protection (= 2.0.1)
+      rack-protection (= 2.0.3)
       tilt (~> 2.0)
     sinatra-activerecord (2.0.13)
       activerecord (>= 3.2)
       sinatra (>= 1.0)
-    sinatra-contrib (2.0.1)
-      backports (>= 2.0)
+    sinatra-contrib (2.0.3)
+      activesupport (>= 4.0.0)
+      backports (>= 2.8.2)
       multi_json
       mustermann (~> 1.0)
-      rack-protection (= 2.0.1)
-      sinatra (= 2.0.1)
+      rack-protection (= 2.0.3)
+      sinatra (= 2.0.3)
       tilt (>= 1.3, < 3)
     sqlite3 (1.3.13)
+    terminal_colors (1.0.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
-    twilio-ruby (5.9.0)
+    twilio-ruby (5.10.5)
       faraday (~> 0.9)
       jwt (>= 1.5, <= 2.5)
       nokogiri (>= 1.6, < 2.0)
@@ -69,17 +226,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  graphql
+  forwarder_app!
+  forwarder_host!
   pry
-  puma
-  rack
-  rack-contrib
-  rake
-  sinatra
-  sinatra-activerecord
-  sinatra-contrib
+  sms_client!
+  sms_component!
   sqlite3
-  twilio-ruby
+  twilio_lib_client!
+  twilio_lib_component!
 
 BUNDLED WITH
-   1.16.1
+   1.16.2
