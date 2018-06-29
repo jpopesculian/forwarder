@@ -20,3 +20,4 @@ docker.env
 swarm-connect.sh
 settings/message_store_postgres.json
 settings/twilio_client.json
+settings/db.json

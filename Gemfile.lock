@@ -1,19 +1,53 @@
 PATH
+  remote: ../chainable-message
+  specs:
+    evt-chainable_message (0.0.0)
+
+PATH
   remote: ../forwarder-host
   specs:
     forwarder_host (0.0.0)
       evt-component_host
+      server_component
       sms_component
       twilio_lib_component
+
+PATH
+  remote: ../forwarder-models
+  specs:
+    forwarder_models (0.0.0)
+      activerecord
+      evt-settings
+
+PATH
+  remote: ../forwarder-schema
+  specs:
+    forwarder_schema (0.0.0)
+      forwarder_models
+      graphql
+
+PATH
+  remote: ../server-component
+  specs:
+    server_component (0.0.0)
+      eventide-postgres
+      evt-chainable_message
+      evt-try
+      forwarder_models
+      ruby-boolean
+      sms_client
 
 PATH
   remote: ../sms-component
   specs:
     sms_client (0.0.0)
+      evt-chainable_message
       evt-configure
       evt-messaging-postgres
+      twilio_lib_client
     sms_component (0.0.0)
       eventide-postgres
+      evt-chainable_message
       evt-try
       ruby-boolean
       twilio_lib_client
@@ -22,10 +56,12 @@ PATH
   remote: ../twilio-lib-component
   specs:
     twilio_lib_client (0.0.0)
+      evt-chainable_message
       evt-configure
       evt-messaging-postgres
     twilio_lib_component (0.0.0)
       eventide-postgres
+      evt-chainable_message
       evt-try
       ruby-boolean
       twilio-ruby
@@ -35,13 +71,12 @@ PATH
   specs:
     forwarder_app (0.0.0)
       forwarder_host
-      graphql
+      forwarder_schema
       puma
       rack
       rack-contrib
       rake
       sinatra
-      sinatra-activerecord
       sinatra-contrib
       sms_client
       twilio-ruby
@@ -136,7 +171,7 @@ GEM
       evt-settings
       pg
     evt-message_store-postgres-database (0.3.0.0)
-    evt-messaging (0.25.1.0)
+    evt-messaging (0.26.0.0)
       evt-message_store
     evt-messaging-postgres (0.7.0.3)
       evt-message_store-postgres
@@ -200,9 +235,6 @@ GEM
       rack (~> 2.0)
       rack-protection (= 2.0.3)
       tilt (~> 2.0)
-    sinatra-activerecord (2.0.13)
-      activerecord (>= 3.2)
-      sinatra (>= 1.0)
     sinatra-contrib (2.0.3)
       activesupport (>= 4.0.0)
       backports (>= 2.8.2)
@@ -226,9 +258,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  evt-chainable_message!
   forwarder_app!
   forwarder_host!
+  forwarder_models!
+  forwarder_schema!
   pry
+  server_component!
   sms_client!
   sms_component!
   sqlite3

@@ -1,8 +1,10 @@
-require 'forwarder_host'
 require './lib/app'
 
-fork do
-  ForwarderHost::Start.()
+warmup do |app|
+  ForwarderSchema::Start.()
+  fork do
+    ForwarderHost::Start.()
+  end
 end
 
 run App

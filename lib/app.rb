@@ -2,23 +2,18 @@ require 'pry'
 require 'sinatra'
 require 'sinatra/reloader'
 require 'sinatra/json'
-require 'sinatra/activerecord'
-require 'sinatra/config_file'
 require 'rack/contrib'
 
-require_relative 'app/models/speaker'
-require_relative 'app/graphql/schema'
+require 'forwarder_schema'
+require 'forwarder_host'
+
 require_relative 'app/services/sms/inbound_service.rb'
 require_relative 'app/services/voice/inbound_service.rb'
 
 class App < Sinatra::Base
-  register Sinatra::ConfigFile
   configure :development do
     register Sinatra::Reloader
   end
-
-  set :database_file, 'config/database.yml'
-  config_file 'config/twilio.yml'
   use Rack::PostBodyContentTypeParser
 
   get '/' do
@@ -35,7 +30,7 @@ class App < Sinatra::Base
   end
 
   post '/graphql' do
-    result = AppSchema.execute(
+    result = ForwarderSchema::Schema.execute(
       params[:query],
       variables: params[:variables],
       context: { current_user: nil },

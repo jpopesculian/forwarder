@@ -17,14 +17,13 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'sinatra'
   s.add_runtime_dependency 'sinatra-contrib'
-  s.add_runtime_dependency 'sinatra-activerecord'
-  s.add_runtime_dependency 'graphql'
   s.add_runtime_dependency 'puma'
   s.add_runtime_dependency 'rake'
   s.add_runtime_dependency 'rack-contrib'
   s.add_runtime_dependency 'twilio-ruby'
   s.add_runtime_dependency 'rack'
   s.add_runtime_dependency 'forwarder_host'
+  s.add_runtime_dependency 'forwarder_schema'
   s.add_runtime_dependency 'sms_client'
 
   s.add_development_dependency 'sqlite3'
