@@ -25,10 +25,15 @@ PATH
     forwarder_schema (0.0.0)
       forwarder_models
       graphql
+      server_client
 
 PATH
   remote: ../server-component
   specs:
+    server_client (0.0.0)
+      evt-chainable_message
+      evt-configure
+      evt-messaging-postgres
     server_component (0.0.0)
       eventide-postgres
       evt-chainable_message
@@ -222,7 +227,7 @@ GEM
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
-    puma (3.11.4)
+    puma (3.12.0)
     rack (2.0.5)
     rack-contrib (2.0.1)
       rack (~> 2.0)
@@ -264,6 +269,7 @@ DEPENDENCIES
   forwarder_models!
   forwarder_schema!
   pry
+  server_client!
   server_component!
   sms_client!
   sms_component!
@@ -272,4 +278,4 @@ DEPENDENCIES
   twilio_lib_component!
 
 BUNDLED WITH
-   1.16.2
+   1.16.3
