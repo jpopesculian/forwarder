@@ -33,7 +33,10 @@ class App < Sinatra::Base
     result = ForwarderSchema::Schema.execute(
       params[:query],
       variables: params[:variables],
-      context: { current_user: nil },
+      context: {
+        current_user: nil,
+        request: request
+      },
     )
     json result
   end
