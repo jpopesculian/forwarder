@@ -81,9 +81,9 @@ PATH
       rack
       rack-contrib
       rake
+      server_client
       sinatra
       sinatra-contrib
-      sms_client
       twilio-ruby
 
 GEM

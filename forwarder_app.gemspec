@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'rack'
   s.add_runtime_dependency 'forwarder_host'
   s.add_runtime_dependency 'forwarder_schema'
-  s.add_runtime_dependency 'sms_client'
+  s.add_runtime_dependency 'server_client'
 
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'pry'
