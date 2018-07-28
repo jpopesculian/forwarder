@@ -1,4 +1,4 @@
-require './lib/app'
+require './lib/forwarder_app'
 
 # TODO delete this
 pg_settings = Settings.build('settings/message_store_postgres.json').get
@@ -11,4 +11,4 @@ warmup do |app|
   end
 end
 
-run App
+run ForwarderApp::Server

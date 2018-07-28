@@ -32,7 +32,7 @@ Pry custom commands defined in my .pryrc:
 =end
 
 require 'pry'
-require './lib/app'
+require './lib/forwarder_app'
 
 # Set Pry theme
 Pry.config.theme = "tomorrow-night"

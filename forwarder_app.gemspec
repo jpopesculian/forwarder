@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'sinatra'
   s.add_runtime_dependency 'sinatra-contrib'
+  s.add_runtime_dependency 'faye-websocket'
   s.add_runtime_dependency 'puma'
   s.add_runtime_dependency 'rake'
   s.add_runtime_dependency 'rack-contrib'
