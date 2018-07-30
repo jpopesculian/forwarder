@@ -11,4 +11,4 @@ warmup do |app|
   end
 end
 
-run ForwarderApp::Server
+run ForwarderApp::Handler

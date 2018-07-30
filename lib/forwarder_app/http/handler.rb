@@ -1,6 +1,6 @@
 module ForwarderApp
   module Http
-    class Server < Sinatra::Base
+    class Handler < Sinatra::Base
 
       configure :development do
         register Sinatra::Reloader

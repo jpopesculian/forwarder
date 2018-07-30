@@ -1,6 +1,6 @@
 module ForwarderApp
   module Ws
-    class Server
+    class Handler
       include GraphQL::MessageTypes
 
       def self.call(env)
