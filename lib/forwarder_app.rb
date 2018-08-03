@@ -13,6 +13,7 @@ require_relative 'forwarder_app/http/handler'
 
 require_relative 'forwarder_app/ws/graphql/message_types'
 require_relative 'forwarder_app/ws/graphql/message'
+require_relative 'forwarder_app/ws/connection'
 require_relative 'forwarder_app/ws/handler'
 
 require_relative 'forwarder_app/handler'

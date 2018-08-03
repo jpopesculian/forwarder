@@ -10,6 +10,10 @@ module ForwarderApp
           data[:type]
         end
 
+        def id
+          data[:id]
+        end
+
         def payload
           Payload.new(data)
         end

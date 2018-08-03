@@ -17,13 +17,23 @@ module ForwarderApp
 
       def call(env)
         @ws = Faye::WebSocket.new(env)
+        @subscriptions = []
         connect
         async_response
+      end
+
+      def send_result(id = nil, payload = nil)
+        send_message(GQL_DATA, id, payload)
+      end
+
+      def send_error(id = nil, payload = nil)
+        send_message(GQL_ERROR, id, payload)
       end
 
       private
 
       attr_reader :ws
+      attr_reader :subscriptions
 
       def on_open(event)
       end
@@ -44,17 +54,23 @@ module ForwarderApp
             operation_name: payload.operation_name,
             context: {
               current_user: nil,
-              request: event
+              request: event,
+              connection: Connection.new(self, message)
             }
           )
-          binding.pry
-          send_message GQL_DATA, nil, result
+          if result.context[:subscription_id]
+            subscriptions << result.context[:subscription_id]
+          end
+          send_result nil, result
         else
           send_error
         end
       end
 
       def on_close(event)
+        # subscriptions.each do |subscription_id|
+        #   ForwarderSchema::Schema.subscriptions.delete_subscription(subscription_id)
+        # end
       end
 
       def on_error(event)
@@ -62,10 +78,6 @@ module ForwarderApp
 
       def send_message(type, id = nil, payload = nil)
         ws.send(JSON.dump(id: id, type: type, payload: payload))
-      end
-
-      def send_error(id = nil, payload = nil)
-        send_message(GQL_ERROR, id, payload)
       end
 
       def connect
